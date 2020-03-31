@@ -1,8 +1,8 @@
 {
-  "name": "zhongxiong",
+  "name": "programmer_encourager",
   "version": "0.0.1",
   "author": "someCat <zhangtao@touchdata.io>",
-  "description": "zhongxiong de zhainan",
+  "description": "programmer_encourager de zhainan",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {

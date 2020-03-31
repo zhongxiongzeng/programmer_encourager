@@ -1,6 +1,6 @@
-# zhongxiong
+# programmer_encourager
 
-> zhongxiong de zhainan
+> 程序员鼓励师
 
 #### Build Setup
 

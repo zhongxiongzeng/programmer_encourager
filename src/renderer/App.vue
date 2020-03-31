@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'zhongxiong'
+    name: 'programmer_encourager'
   }
 </script>
 

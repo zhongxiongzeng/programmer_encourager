@@ -23,9 +23,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     // height: 563,
     // useContentSize: true,
-    // width: 1000,
-    // transparent: true // 设置透明
-    height: 580,
+    // width: 1000
+    height: 800,
     width: 300,
     useContentSize: true,
     frame: false, // 要创建无边框窗口
