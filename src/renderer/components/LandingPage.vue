@@ -4,12 +4,15 @@
       <span>{{index + 1}} / {{assets.length}}</span>
       <button class="cus-btn" @click="to('next')">下一个</button>
       <button class="cus-btn" @click="to('pre')">上一个</button>
+      <button class="cus-btn min" @click="handleOp('min')">小</button>
+
     </div>
     
   </div>
 </template>
 
 <script>
+  const { ipcRenderer: ipc } = require('electron')
   export default {
     name: 'landing-page',
     data () {
@@ -56,36 +59,42 @@
             value: 'https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json'
           }
         ],
-        index: 4
+        index: 0
       }
     },
     mounted () {
-      this.init()
       this.canMove()
+      this.init()
     },
     methods: {
       init () {
-        window.L2Dwidget.init({
-          'model': {
-            jsonPath: this.assets[this.index].value,
-            scale: 1
-          },
-          'display': {
-            'position': 'right',
-            'width': 150,
-            'height': 500,
-            'hOffset': 0,
-            'vOffset': -100
-          },
-          'mobile': {
-            'show': true,
-            'scale': 0.5
-          },
-          'react': {
-            'opacityDefault': 0.7,
-            'opacityOnHover': 0.2
-          }
-        })
+        if (window.L2Dwidget) {
+          window.L2Dwidget.init({
+            'model': {
+              jsonPath: this.assets[this.index].value,
+              scale: 1
+            },
+            'display': {
+              'position': 'right',
+              'width': 150,
+              'height': 500,
+              'hOffset': 0,
+              'vOffset': -100
+            },
+            'mobile': {
+              'show': true,
+              'scale': 0.5
+            },
+            'react': {
+              'opacityDefault': 0.7,
+              'opacityOnHover': 0.2
+            }
+          })
+        } else {
+          setTimeout(() => {
+            this.init()
+          }, 5000)
+        }
       },
       canMove () {
         let win = this.$electron.remote.getCurrentWindow()
@@ -125,6 +134,9 @@
           else this.index--
           this.init()
         }
+      },
+      handleOp (type) {
+        ipc.send(type)
       }
     }
   }
@@ -141,7 +153,9 @@
   *, *::before, *::after {
     outline: 0;
   }
-  body { font-family: 'Source Sans Pro', sans-serif; }
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
 
   #wrapper {
     height: 100vh;
@@ -162,6 +176,12 @@
         border: 2px solid rgb(218, 196, 200);
         padding: 0 8px;
         color: rgb(255, 255, 255);
+
+        &.min{
+          padding: 0;
+          width: 20px;
+          border-radius: 50%;
+        }
       }
     }
     &:hover{
