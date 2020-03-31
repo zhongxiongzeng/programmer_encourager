@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>程序员鼓励师</title>
+    <% if (htmlWebpackPlugin.options.nodeModules) { %>
+      <!-- Add `node_modules/` to global paths so `require` works properly in development -->
+      <script>
+        require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
+      </script>
+    <% } %>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- Set `__static` path to static files in production -->
+    <% if (!process.browser) { %>
+      <script>
+        if (process.env.NODE_ENV !== 'development') window.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+      </script>
+    <% } %>
+
+    <!-- webpack builds are automatically injected -->
+    <div id="live2d-widget"><canvas id="live2dcanvas" width="300" height="600"
+        style="position: fixed;opacity: 1;right: -1px;bottom: -20px;z-index: 99999;pointer-events: none; background: transparent"></canvas>
+    </div>
+  </body>
+  <script type="text/javascript" charset="utf-8" async=""
+    src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.0.min.js"></script>
+  
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js?_=1557308476616"></script>
+    <script type="text/javascript">
+      L2Dwidget.init();
+      　　L2Dwidget.init({ "model": { jsonPath:
+　　"https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+　　"scale": 1 }, "display": { "position": "left", "width": 150, "height": 300,
+　　"hOffset": 0, "vOffset": -20 }, "mobile": { "show": true, "scale": 0.5 },
+　　"react": { "opacityDefault": 0.7, "opacityOnHover": 0.2 } });
+      </script>
+      <script type="text/javascript">getFollowStatus('df91d846-448f-4c9a-c764-08d6b94b3063')</script>
+</html>
