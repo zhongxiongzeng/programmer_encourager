@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>程序员鼓励师</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
     <script type="text/javascript" charset="utf-8" async="" src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
     <% if (htmlWebpackPlugin.options.nodeModules) { %>
       <!-- Add `node_modules/` to global paths so `require` works properly in development -->
@@ -19,5 +20,6 @@
         if (process.env.NODE_ENV !== 'development') window.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
       </script>
     <% } %>
+    <script src="https://mi.js.org/live2d-widget/autoload.js"></script>
   </body>
 </html>

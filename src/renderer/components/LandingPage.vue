@@ -1,13 +1,11 @@
 <template>
   <div id="wrapper">
     <div class="op-box">
-      <span>{{index + 1}} / {{assets.length}}</span>
-      <button class="cus-btn" @click="to('next')">下一个</button>
-      <button class="cus-btn" @click="to('pre')">上一个</button>
-      <button class="cus-btn min" @click="handleOp('min')">小</button>
-
+      <span class="c-tag">{{index + 1}} / {{assets.length}}</span>
+      <button class="cus-btn" @click="to('pre')">&#60;&#60;</button>
+      <button class="cus-btn" @click="to('next')">>></button>
+      <button class="cus-btn circle-btn" @click="handleOp('min')">-</button>
     </div>
-    
   </div>
 </template>
 
@@ -57,6 +55,10 @@
           {
             name: 'live2d-widget-model-z16',
             value: 'https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json'
+          },
+          {
+            name: 'live2d-widget-model-haru_01',
+            value: 'https://unpkg.com/live2d-widget-model-haru_01@1.0.5/assets/haru_01.model.json'
           }
         ],
         index: 0
@@ -137,6 +139,9 @@
       },
       handleOp (type) {
         ipc.send(type)
+      },
+      toAdd () {
+
       }
     }
   }
@@ -149,7 +154,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: url('https://images.cnblogs.com/cnblogs_com/mxiaoli/1534839/o_cursor.png'), auto;
   }
+
+  *:hover {
+    cursor: url('https://images.cnblogs.com/cnblogs_com/mxiaoli/1534839/o_0000111.png'), auto;
+  }
+
   *, *::before, *::after {
     outline: 0;
   }
@@ -164,29 +175,44 @@
 
     .op-box{
       position: absolute;
-      right: 0;
+      right: 30px;
       top: -100px;
       transition: all .3s linear;
+      .c-tag{
+        background: rgba(0, 0, 0, 0.2);
+        color: rgb(255, 255, 255);
+        padding: 0 8px;
+        height: 20px;
+        border-radius: 10px;
+        position: relative;
+        top: 2px;
+      }
       .cus-btn{
         cursor: pointer;
-        background: rgba(0, 0, 0, 0.212);
+        background: rgba(0, 0, 0, 0.2);
         border: none;
         border-radius: 10px;
         height: 20px;
         border: 2px solid rgb(218, 196, 200);
         padding: 0 8px;
         color: rgb(255, 255, 255);
+        transition: all .3s linear;
 
-        &.min{
+        &.circle-btn{
           padding: 0;
           width: 20px;
+          border: 2px solid rgb(218, 196, 200);
+          line-height: 10px;
           border-radius: 50%;
+        }
+        &:hover{
+          background: rgba(0, 0, 0, 0.5);
         }
       }
     }
     &:hover{
       .op-box{
-        top: 20px;
+        top: 30px;
       }
     }
 
